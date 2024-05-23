@@ -6,6 +6,7 @@ import NotSelected from "./components/NotSelected";
 import AddProject from "./components/AddProject";
 
 function App() {
+  const [projects, setProjects] = useState([]);
   const [addNewProject, setAddNewProject] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -17,6 +18,10 @@ function App() {
     }
   }
 
+  function handleNewProject(newProject) {
+    setProjects((prevProjects) => [...prevProjects, newProject]);
+  }
+
   return (
     <div className="grid grid-cols-3 min-h-screen">
       <Sidebar onAddProjectClick={handleAddProjectClick} />
@@ -24,7 +29,9 @@ function App() {
         <NotSelected onAddProjectClick={handleAddProjectClick} />
       )}
       {selectedProject !== null && !addNewProject && <Project />}
-      {addNewProject && <AddProject onClose={handleAddProjectClick} />}
+      {addNewProject && (
+        <AddProject onClose={handleAddProjectClick} onSave={handleNewProject} />
+      )}
     </div>
   );
 }

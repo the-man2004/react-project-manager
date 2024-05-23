@@ -1,8 +1,10 @@
-export default function AddProject() {
+export default function AddProject({ onClose }) {
   return (
     <div className="col-span-2 max-w-[750px] mt-8 p-8">
       <div className="mt-16 flex justify-end">
-        <button className=" py-2 px-6 rounded-lg">Cancel</button>
+        <button onClick={onClose} className=" py-2 px-6 rounded-lg">
+          Cancel
+        </button>
         <button className="py-2 px-6 bg-stone-900 text-white rounded-lg">
           Save
         </button>

@@ -1,6 +1,6 @@
 import noProjects from "../assets/no-projects.png";
 
-export default function NotSelected() {
+export default function NotSelected({ onAddProjectClick }) {
   return (
     <div className="col-span-2 mt-8">
       <img
@@ -14,7 +14,10 @@ export default function NotSelected() {
       <p className="text-center mt-4">
         Select a project or get started with a new one
       </p>
-      <button className="block mt-6 mx-auto py-2 px-4 bg-stone-900 text-stone-500 rounded-lg">
+      <button
+        onClick={() => onAddProjectClick("open")}
+        className="block mt-6 mx-auto py-2 px-4 bg-stone-900 text-stone-500 rounded-lg"
+      >
         Create new project
       </button>
     </div>

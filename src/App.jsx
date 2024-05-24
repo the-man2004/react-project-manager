@@ -10,9 +10,9 @@ function App() {
     {
       title: "Learning React from Maximilian",
       description: `
-      Learning React from Maximilian
+Learning React from Maximilian
 
-      Start with the basics, end with the advanced stuff.
+Start with the basics, end with the advanced stuff.
       `,
       dueDate: "05/23/2024",
     },

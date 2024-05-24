@@ -1,14 +1,14 @@
-export default function Projects({ project }) {
+export default function Projects({ project, onProjectDelete }) {
   return (
     <div className="col-span-2 max-w-[750px] mt-8 px-8">
       <div className="flex justify-between">
         <h2 className="mt-16 font-semibold text-3xl md:text-5xl">
           {project.title}
         </h2>
-        <button>Delete</button>
+        <button onClick={onProjectDelete}>Delete</button>
       </div>
       <p className="mt-4 text-stone-400">{project.dueDate}</p>
-      <p className="font-semibold whitespace-pre border-b border-stone-800">
+      <p className="mt-4 pb-4 font-semibold whitespace-pre border-b border-stone-800">
         {project.description}
       </p>
       <div className="mt-4">
@@ -28,11 +28,13 @@ export default function Projects({ project }) {
             <button>Add Task</button>
           </div>
         </form>
-        <ul className="mt-16">
-          <li className="flex justify-between">
-            <p className="ml-4 font-semibold">Lorem ipsum dolor sit.</p>
-            <button>Clear</button>
-          </li>
+        <ul className="mt-16 flex flex-col gap-4">
+          {project.tasks.map((task) => (
+            <li key={task.id} className="flex justify-between font-semibold">
+              <p className="ml-4">{task.task}</p>
+              <button>Clear</button>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

@@ -9,12 +9,15 @@ function App() {
   const [projects, setProjects] = useState([
     {
       title: "Learning React from Maximilian",
-      description: `
-Learning React from Maximilian
+      description: `Learning React from Maximilian
 
-Start with the basics, end with the advanced stuff.
-      `,
+Start with the basics, end with the advanced stuff.`,
       dueDate: "05/23/2024",
+      tasks: [
+        { task: "Learn the basics", id: 1029384756 },
+        { task: "Learn advanced concepts", id: 6162738495 },
+        { task: "Practice, practice, practice", id: 9989657432 },
+      ],
     },
   ]);
   const [addNewProject, setAddNewProject] = useState(false);
@@ -38,6 +41,19 @@ Start with the basics, end with the advanced stuff.
     console.log(projectPosition);
   }
 
+  // Project functions
+  function handleProjectDelete() {
+    setProjects((prevProjects) => {
+      const newProjects = prevProjects.filter((_, i) => i !== selectedProject);
+
+      if (newProjects.length === 0) {
+        setSelectedProject(null);
+      }
+
+      return newProjects;
+    });
+  }
+
   const currentProject = projects[selectedProject];
 
   return (
@@ -50,8 +66,11 @@ Start with the basics, end with the advanced stuff.
       {selectedProject === null && !addNewProject && (
         <NotSelected onAddProjectClick={handleAddProjectClick} />
       )}
-      {selectedProject !== null && !addNewProject && (
-        <Project project={currentProject} />
+      {selectedProject !== null && !addNewProject && projects.length !== 0 && (
+        <Project
+          project={currentProject}
+          onProjectDelete={handleProjectDelete}
+        />
       )}
       {addNewProject && (
         <AddProject onClose={handleAddProjectClick} onSave={handleNewProject} />

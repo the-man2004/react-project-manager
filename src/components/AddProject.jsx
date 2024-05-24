@@ -15,6 +15,7 @@ export default function AddProject({ onClose, onSave }) {
         title: title.current.value,
         description: description.current.value,
         dueDate: dueDate.current.value,
+        tasks: [],
       };
 
       title.current.value = "";

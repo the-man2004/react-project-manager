@@ -1,4 +1,15 @@
-export default function Projects({ project, onProjectDelete }) {
+import { useRef } from "react";
+
+export default function Projects({ project, onProjectDelete, onAddTask }) {
+  const taskInput = useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onAddTask(taskInput.current.value);
+    taskInput.current.value = "";
+  }
+
   return (
     <div className="col-span-2 max-w-[750px] mt-8 px-8">
       <div className="flex justify-between">
@@ -12,7 +23,7 @@ export default function Projects({ project, onProjectDelete }) {
         {project.description}
       </p>
       <div className="mt-4">
-        <form className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <label
             htmlFor="tasks"
             className="mb-4 font-semibold text-2xl md:text-4xl"
@@ -21,6 +32,7 @@ export default function Projects({ project, onProjectDelete }) {
           </label>
           <div>
             <input
+              ref={taskInput}
               type="text"
               id="tasks"
               className="w-[50%] mr-4 p-1 bg-stone-300"

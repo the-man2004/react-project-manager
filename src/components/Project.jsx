@@ -49,7 +49,12 @@ export default function Projects({
           {project.tasks.map((task) => (
             <li key={task.id} className="flex justify-between font-semibold">
               <p className="ml-4">{task.task}</p>
-              <button onClick={() => onRemoveTask(task.id)}>Clear</button>
+              <button
+                onClick={() => onRemoveTask(task.id)}
+                className="hover:text-red-500"
+              >
+                Clear
+              </button>
             </li>
           ))}
         </ul>

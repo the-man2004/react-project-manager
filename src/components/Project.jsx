@@ -1,6 +1,11 @@
 import { useRef } from "react";
 
-export default function Projects({ project, onProjectDelete, onAddTask }) {
+export default function Projects({
+  project,
+  onProjectDelete,
+  onAddTask,
+  onRemoveTask,
+}) {
   const taskInput = useRef();
 
   function handleSubmit(e) {
@@ -44,7 +49,7 @@ export default function Projects({ project, onProjectDelete, onAddTask }) {
           {project.tasks.map((task) => (
             <li key={task.id} className="flex justify-between font-semibold">
               <p className="ml-4">{task.task}</p>
-              <button>Clear</button>
+              <button onClick={() => onRemoveTask(task.id)}>Clear</button>
             </li>
           ))}
         </ul>

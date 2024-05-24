@@ -72,6 +72,21 @@ Start with the basics, end with the advanced stuff.`,
     });
   }
 
+  function handleRemoveTask(id) {
+    setProjects((prevProjects) => {
+      const allProjects = [...prevProjects];
+      const newTasks = allProjects[selectedProject].tasks.filter(
+        (task) => task.id !== id
+      );
+
+      console.log(newTasks);
+
+      allProjects[selectedProject].tasks = newTasks;
+
+      return allProjects;
+    });
+  }
+
   const currentProject = projects[selectedProject];
 
   return (
@@ -89,6 +104,7 @@ Start with the basics, end with the advanced stuff.`,
           project={currentProject}
           onProjectDelete={handleProjectDelete}
           onAddTask={handleAddTask}
+          onRemoveTask={handleRemoveTask}
         />
       )}
       {addNewProject && (
